@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Link to HTMX from the header builder
+- TailwindCSS for styling
+- HTML Templating with Maud
+- Basic REST API using Actix-Web
 - This changelog file
 - This repository
 
