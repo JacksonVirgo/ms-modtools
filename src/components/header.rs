@@ -11,7 +11,7 @@ impl<'a> Header<'a> {
         }
     }
 
-    pub fn title(&mut self, title: &'a str) -> &mut Self {
+    pub fn title(mut self, title: &'a str) -> Self {
         self.title = title;
         self
     }
