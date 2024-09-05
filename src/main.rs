@@ -13,9 +13,7 @@ async fn serve_css() -> impl Responder {
 
 #[get("/")]
 async fn hello() -> impl Responder {
-    let header = generate_header(Header {
-        title: "MafiaScum ModTools!",
-    });
+    let header = generate_header(Header::new());
 
     let html = html! {
         (header)

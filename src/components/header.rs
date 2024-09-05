@@ -4,6 +4,19 @@ pub struct Header<'a> {
     pub title: &'a str,
 }
 
+impl<'a> Header<'a> {
+    pub fn new() -> Self {
+        Self {
+            title: "MafiaScum ModTools!",
+        }
+    }
+
+    pub fn title(&mut self, title: &'a str) -> &mut Self {
+        self.title = title;
+        self
+    }
+}
+
 pub fn generate_header(options: Header) -> Markup {
     let markup = html! {
         (DOCTYPE)
