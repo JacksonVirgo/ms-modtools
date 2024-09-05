@@ -1,9 +1,23 @@
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use components::header::{generate_header, Header};
 use dotenv::dotenv;
+use maud::html;
+
+mod components;
 
 #[get("/")]
 async fn hello() -> impl Responder {
-    HttpResponse::Ok().body("Hello world!")
+    let header = generate_header(Header {
+        title: "MafiaScum ModTools!",
+    });
+
+    let html = html! {
+        (header)
+        h1 { "Hello, world!" }
+    }
+    .into_string();
+
+    HttpResponse::Ok().body(html)
 }
 
 #[post("/echo")]
