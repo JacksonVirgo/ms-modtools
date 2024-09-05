@@ -5,6 +5,12 @@ use maud::html;
 
 mod components;
 
+const STYLE_CSS: &[u8] = include_bytes!("./static/output.css");
+#[get("/style.css")]
+async fn serve_css() -> impl Responder {
+    HttpResponse::Ok().content_type("text/css").body(STYLE_CSS)
+}
+
 #[get("/")]
 async fn hello() -> impl Responder {
     let header = generate_header(Header {
@@ -13,7 +19,7 @@ async fn hello() -> impl Responder {
 
     let html = html! {
         (header)
-        h1 { "Hello, world!" }
+        h1."text-red-400 text-2xl" { "Hello, world!" }
     }
     .into_string();
 
@@ -46,6 +52,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .service(hello)
             .service(echo)
+            .service(serve_css)
             .route("/hey", web::get().to(manual_hello))
     })
     .bind(address)?
